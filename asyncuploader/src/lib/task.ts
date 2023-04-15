@@ -1,4 +1,5 @@
 import Protocols from "./protocols";
+import RequestResponse from "./requestResponse";
 
 enum UploadStatus{
     stopped = 0,
@@ -16,6 +17,7 @@ export default class Task{
     headerOptions:object = {};
     files:Array<any> = [];
     status:UploadStatus = UploadStatus.stopped;
+    requestResponse: RequestResponse;
 
     constructor(protocol:Protocols, host:string, port:number, route:string, dataset?:object, headerOptions?:object, files?:Array<any>){
         this.protocol = protocol;
@@ -91,5 +93,13 @@ export default class Task{
      */
     getStatus():UploadStatus{
         return this.status
+    }
+
+    /**
+     * Get request response. By default response is undefined, after upload manager run, it set upload response.
+     * @returns RequestResponse as upload response.
+     */
+    getRequestResponse():RequestResponse{
+        return this.requestResponse
     }
 }
