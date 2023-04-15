@@ -14,7 +14,7 @@ export default class Task{
     route:string;
     dataset:object = {};
     headerOptions:object = {};
-    files:Array<any>;
+    files:Array<any> = [];
     status:UploadStatus = UploadStatus.stopped;
     errorMessage:string;
 
@@ -34,10 +34,36 @@ export default class Task{
         }
     }
 
+    /**
+     * Add file to send.
+     * @param file File to send.
+     */
     addFile(file:any):void{
         this.files.push(file)
     }
 
+    /**
+     * Add Multile files to send.
+     * @param files Files to send.
+     */
+    addFiles(files:Array<any>):void{
+        this.files.concat(files)
+    }
+
+    /**
+     * Remove a file from file's stack using id.
+     * @param fileId File id stack.
+     */
+    removeFile(fileId:Number):any{
+        this.files = this.files.filter((value,idx)=> idx!==fileId);
+    }
+
+    /**
+     * Remove all files in file's stack
+     */
+    removeAllFiles():void{
+        this.files = [];
+    }
     setUploadingStatus():void{
         this.status = UploadStatus.uploading;
     }
