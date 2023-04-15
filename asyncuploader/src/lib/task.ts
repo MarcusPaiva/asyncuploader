@@ -16,6 +16,7 @@ export default class Task{
     headerOptions:object = {};
     files:Array<any>;
     status:UploadStatus = UploadStatus.stopped;
+    errorMessage:string;
 
     constructor(protocol:Protocols, host:string, port:number, route:string, dataset?:object, headerOptions?:object, files?:Array<any>){
         this.protocol = protocol;
@@ -35,5 +36,22 @@ export default class Task{
 
     addFile(file:any):void{
         this.files.push(file)
+    }
+
+    setUploadingStatus():void{
+        this.status = UploadStatus.uploading;
+    }
+
+    setCompletedStatus():void{
+        this.status = UploadStatus.completed;
+    }
+
+    setErrorStatus(message:string):void{
+        this.status = UploadStatus.error;
+        this.errorMessage = message;
+    }
+
+    getStatus():UploadStatus{
+        return this.status
     }
 }
