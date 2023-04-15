@@ -1,3 +1,6 @@
+/**
+ * Protocols enable to use.
+ */
 enum Protocols{
     http = "http",
     https = "https",

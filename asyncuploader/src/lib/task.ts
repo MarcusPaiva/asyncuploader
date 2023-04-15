@@ -1,6 +1,9 @@
 import Protocols from "./protocols";
 import RequestResponse from "./requestResponse";
 
+/**
+ * Upload's status enum.
+ */
 enum UploadStatus{
     stopped = 0,
     uploading = 1,
@@ -8,6 +11,9 @@ enum UploadStatus{
     error = 3
 }
 
+/**
+ * Task's class.
+ */
 export default class Task{
     protocol:Protocols;
     host:string;
@@ -19,6 +25,16 @@ export default class Task{
     status:UploadStatus = UploadStatus.stopped;
     requestResponse: RequestResponse;
 
+    /**
+     * Task's constructor.
+     * @param protocol Protocol type
+     * @param host Host's name or IP
+     * @param port Host's port.
+     * @param route Route to Upload.
+     * @param dataset Request's dataset.
+     * @param headerOptions Request's header parameters. (Optional)
+     * @param files Files. (Optional in constructor, but necessary to upload data)
+     */
     constructor(protocol:Protocols, host:string, port:number, route:string, dataset?:object, headerOptions?:object, files?:Array<any>){
         this.protocol = protocol;
         this.host = host;
